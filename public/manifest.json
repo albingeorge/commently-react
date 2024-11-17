@@ -9,7 +9,12 @@
     "permissions": [
         "tabs"
     ],
+    "icons": {
+        "48": "logo-color-48.png",
+        "96": "logo-color-96.png"
+    },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "scripts": ["background.js"]
     }
   }
