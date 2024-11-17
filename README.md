@@ -21,3 +21,17 @@ A React app which would be used for commently browser extension
 - User registration/login
 - Sync seamlessly across browsers/devices
 - Enable making comments public
+
+## Setup
+
+## Build
+
+`npm run build`
+
+The built files are placed in the "dist" directory.
+
+## Setup Chrome extension
+
+1. Goto [Chrome's extensions page](chrome://extensions/)
+2. Click "Load unpacked" and select the "dist" directory
+3. Click on the "Commently" browser extension button to start

@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
+
+
+function CommentRow({ comment }) {
+  return (
+    <tr>
+      <td>{comment.text}</td>
+      <td>{comment.created_at.toUTCString()}</td>
+      <td><button id={comment.id} onClick={() => deleteComment(comment.id)}>Delete</button></td>
+    </tr>
+  );
+}
+
+function deleteComment(id){
+  alert("Delete comment id: " + id);
+}
+
+function CommentsTable() {
+  var today = new Date();
+  const [commentList, setCommentList] = useState([
+    {id: 1, text: "My first comment", created_at: new Date(today.getTime() - (1000*60*60*24))},
+    {id: 2, text: "My second comment", created_at: today},
+  ])
+
+  const rows = [];
+  commentList.forEach((comment) => {
+    rows.push(
+      <CommentRow
+        comment={comment}
+        key={comment.id} />
+    );
+  });
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Comment</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  );
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [url, setUrl] = useState('');
+  useEffect(() => {
+    // Request the current tab's URL from the background script
+    chrome.runtime.sendMessage({ type: "get-url" }, (response) => {
+      if (response?.url) {
+        setUrl(response.url);
+      }
+    });
+  }, []);
 
   return (
     <>
+      <h1>Commently</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h4>Current Page URL</h4>
+        <p>{url || "Loading..."}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CommentsTable />
     </>
-  )
+  );
 }
 
 export default App
