@@ -35,3 +35,9 @@ The built files are placed in the "dist" directory.
 1. Goto [Chrome's extensions page](chrome://extensions/)
 2. Click "Load unpacked" and select the "dist" directory
 3. Click on the "Commently" browser extension button to start
+
+## Setup Firefox extension
+
+1. Goto [This Firefox](about:debugging#/runtime/this-firefox) page
+2. Click "Load Temporary Addon" button
+3. Select `dist/manifest.json` file
