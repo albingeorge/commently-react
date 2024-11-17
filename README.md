@@ -1,6 +1,28 @@
 # Commently React app
 
+![commently](public/logo-color-96.png)
+
 A React app which would be used for commently browser extension
+
+## Setup
+
+### Build
+
+`npm run build`
+
+The built files are placed in the "dist" directory.
+
+### Setup Chrome extension
+
+1. Goto [Chrome's extensions page](chrome://extensions/)
+2. Click "Load unpacked" and select the "dist" directory
+3. Click on the "Commently" browser extension button to start
+
+### Setup Firefox extension
+
+1. Goto [This Firefox](about:debugging#/runtime/this-firefox) page
+2. Click "Load Temporary Addon" button
+3. Select `dist/manifest.json` file
 
 ## Features
 
@@ -8,6 +30,7 @@ A React app which would be used for commently browser extension
 
 - Users can add comments to the currently visited webpage
 - When the user visits a page again, lists the comments the user have added for this page
+- Users can delete comments
 
 ### Phase 2
 
@@ -21,23 +44,3 @@ A React app which would be used for commently browser extension
 - User registration/login
 - Sync seamlessly across browsers/devices
 - Enable making comments public
-
-## Setup
-
-## Build
-
-`npm run build`
-
-The built files are placed in the "dist" directory.
-
-## Setup Chrome extension
-
-1. Goto [Chrome's extensions page](chrome://extensions/)
-2. Click "Load unpacked" and select the "dist" directory
-3. Click on the "Commently" browser extension button to start
-
-## Setup Firefox extension
-
-1. Goto [This Firefox](about:debugging#/runtime/this-firefox) page
-2. Click "Load Temporary Addon" button
-3. Select `dist/manifest.json` file
