@@ -46,7 +46,7 @@ function App() {
   const [rendered, setRendered] = useState(false);
 
   var today = new Date();
-  commentsData = [
+  var commentsData = [
     {id: 1, text: "My first comment", created_at: new Date(today.getTime() - (1000*60*60*24))},
     {id: 2, text: "My second comment", created_at: today},
     {id: 3, text: "Another comment", created_at: today},
