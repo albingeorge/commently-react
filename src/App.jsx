@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import './pure-min.css'
 
 function CommentRow({ comment }) {
   return (
     <tr>
       <td>{comment.text}</td>
-      <td>{comment.created_at.toUTCString()}</td>
-      <td><button id={comment.id} onClick={() => deleteComment(comment.id)}>Delete</button></td>
+      <td>
+        {comment.created_at.toUTCString()}
+        <button id={comment.id} onClick={() => deleteComment(comment.id)}>Delete</button>
+      </td>
     </tr>
   );
 }
@@ -26,7 +29,7 @@ function CommentsTable({ commentList }) {
   });
 
   return (
-    <table>
+    <table class="pure-table-bordered">
       <thead>
         <tr>
           <th>Comment</th>
@@ -43,16 +46,23 @@ function App() {
   const [rendered, setRendered] = useState(false);
 
   var today = new Date();
-  const [commentList, setCommentList] = useState([
+  commentsData = [
     {id: 1, text: "My first comment", created_at: new Date(today.getTime() - (1000*60*60*24))},
     {id: 2, text: "My second comment", created_at: today},
-  ])
+    {id: 3, text: "Another comment", created_at: today},
+    {id: 4, text: "Yet another comment", created_at: today}
+  ]
+  const [commentList, setCommentList] = useState([])
 
   useEffect(() => {
     // Request the current tab's URL from the background script
     chrome.runtime.sendMessage({ type: "get-url" }, (response) => {
       if (response?.url) {
         setUrl(response.url);
+
+        // TODO: Replace this to fetch from DB
+        setCommentList(commentsData)
+
         setRendered(true);
       }
     });
@@ -70,7 +80,14 @@ function App() {
         (
           <div>
             <CommentsTable commentList={commentList}/>
-            <input type='text' name='comment-text'/>
+            <div class="pure-g">
+              <div class="pure-u-5-6">
+                <textarea name='comment-text'/>
+              </div>
+              <div class="pure-u-1-6">
+                <button type="submit">Comment</button>
+              </div>
+            </div>
           </div>
         )
       }
