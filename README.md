@@ -2,7 +2,7 @@
 
 ![commently](public/logo-color-96.png)
 
-A React app which would be used for commently browser extension
+A [React](https://react.dev/) app which would be used for commently browser extension
 
 ## Setup
 
@@ -14,13 +14,15 @@ The built files are placed in the "dist" directory.
 
 ### Setup Chrome extension
 
-1. Goto [Chrome's extensions page](chrome://extensions/)
+1. Goto Chrome's extensions page:
+  `chrome://extensions/`
 2. Click "Load unpacked" and select the "dist" directory
 3. Click on the "Commently" browser extension button to start
 
 ### Setup Firefox extension
 
-1. Goto [This Firefox](about:debugging#/runtime/this-firefox) page
+1. Goto "This Firefox" page:
+  `about:debugging#/runtime/this-firefox`
 2. Click "Load Temporary Addon" button
 3. Select `dist/manifest.json` file
 
